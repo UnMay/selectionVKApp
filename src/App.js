@@ -59,26 +59,18 @@ class App extends React.Component {
 					break;
 				// Если вызов апи успешен
 				case 'VKWebAppCallAPIMethodResult':
-					// Проверяю свой request_id
 					if(e.detail.data.request_id === "1"){
-						// Создаю массив ids и кладу в него айдишники всех групп
 						var ids = e.detail.data.response.items.map((item) => item.id);
-						// Отправляю пост запрос
 						fetch('https://instituteselectionvk.ru/predict', {
 							method: 'POST',
-							mode: 'no-cors',
 							headers: {
 								'Accept': 'application/json',
 								'Content-Type': 'application/json'
 							},
-							// Здесь делаю из json строку, чтобы все ок отправилось и скидываю
 							body: JSON.stringify([Number(this.state.user_id),ids])
 						})
-						// Когда пришел ответ перевожу его в жысон
 							.then(response => response.json())
-							// Здесь уже адекватные данные
 							.then(data => {
-								// Кладу в this.state.groups все группы из пришедшего API и в индекс номер, который прислал запрос
 								this.setState({index: data})
 							})
 					}
@@ -97,7 +89,7 @@ class App extends React.Component {
 			<View activePanel="home">
 				{/* Рисую панель */}
 				<Panel id="home">
-					<PanelHeader>Подбор института УрФУ</PanelHeader>
+					<PanelHeader>Подбор института</PanelHeader>
 					{
 						// Здесь проверяю есть ли в this.state.index что-нибудь, если нет
 						// отображаю кнопку получить подписки
