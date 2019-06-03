@@ -64,7 +64,7 @@ class App extends React.Component {
 						// Создаю массив ids и кладу в него айдишники всех групп
 						var ids = e.detail.data.response.items.map((item) => item.id);
 						// Отправляю пост запрос
-						fetch('https://instituteselectionvk.ru//predict', {
+						fetch('https://instituteselectionvk.ru/predict', {
 							method: 'POST',
 							mode: 'no-cors',
 							headers: {
